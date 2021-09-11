@@ -7,14 +7,18 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <img alt="Babylon logo" src="https://www.babylonjs.com/assets/logo-babylonjs-social-twitter.png" />
-  <h1><a target="_blank" href="https://v3.vuejs.org/guide/introduction.html">Vue3</a> + <a target="_blank" href="https://www.babylonjs.com/">Babylon.js</a></h1>
+  <img alt="Typescript logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" />
+  <h1>
+    <a target="_blank" href="https://v3.vuejs.org/guide/introduction.html">Vue3</a> 
+    + 
+    <a target="_blank" href="https://www.babylonjs.com/">Babylon.js</a>
+    + 
+    <a target="_blank" href="https://www.typescriptlang.org/">Typescript</a>
+  </h1>
   <HelloWorld msg="Asset from Mixamo.com" />
 </template>
 
 <style>
-html, body{
-  height: 100%;
-}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,6 +29,7 @@ html, body{
 }
 #app>img{
   max-height: 120px;
+  margin: 0px 15px;
 }
 #app>div{
   margin: 20px;
