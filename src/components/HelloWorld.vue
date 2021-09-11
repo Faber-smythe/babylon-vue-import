@@ -1,52 +1,50 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+import * as BABYLON from 'babylonjs'
+import 'babylonjs-loaders'
 
-defineProps<{ msg: string }>()
+export default {
+  props:{
+    msg: String
+  },
+  async mounted(){
+    /**
+     * SETUP
+     */
+    const canvas = this.$refs.renderCanvas as HTMLCanvasElement
+    const engine = new BABYLON.Engine(canvas)
+    const scene = new BABYLON.Scene(engine)
+    const camera = new BABYLON.ArcRotateCamera('myCamera', 1.56, 1.56, 5, new BABYLON.Vector3(0, 0.5, 0), scene)
+    camera.attachControl(canvas)
+    scene.createDefaultEnvironment()
 
-const count = ref(0)
+    /**
+     * IMPORT MESH HERE
+     */
+    await BABYLON.SceneLoader.ImportMeshAsync("",
+      "",
+      "y-bot.glb",
+      scene);
+
+
+    /**
+     * RENDER SCENE
+     */
+    engine.runRenderLoop(()=>{
+      scene.render()
+    })
+  }
+}
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Docs
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <canvas id="renderCanvas" ref="renderCanvas"></canvas>
+  <h2><a target="_blank" href="https://www.mixamo.com/">{{ msg }}</a></h2>
 </template>
 
 <style scoped>
-a {
-  color: #42b983;
-}
-
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
+#renderCanvas{
+  border: 1px solid red;
+  height: 500px;
+  width: 850px;
 }
 </style>
